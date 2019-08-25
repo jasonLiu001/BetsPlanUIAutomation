@@ -29,37 +29,55 @@ namespace BetsPlanUIAutomation
                 return;
             }
 
-            //查找自动投注选项卡Tab窗口
+            //包含 自动投注选项卡Tab 的父窗口
             var autoBetsFirstElement = ControlViewFinder.GetFirstChild(rootElement, 2);
             if (autoBetsFirstElement == null)
             {
-                this.updateMessage("未查找到自动投注Tab窗口");
+                this.updateMessage("未查找到包含自动投注Tab选项卡所在的父窗口");
                 return;
             }
 
-            //自动投注Tab 兄弟窗口
-            var autoBetsSiblingElement = TreeWalker.ControlViewWalker.GetFirstChild(autoBetsFirstElement);
-            if (autoBetsSiblingElement == null) return;
+            //包含 所有选项卡 的父窗口
+            var autoBetsElement = TreeWalker.ControlViewWalker.GetLastChild(autoBetsFirstElement);
+            if (autoBetsElement == null)
+            {
+                this.updateMessage("未查找到包含所有Tab选项卡的父窗口");
+                return;
+            }
 
-            //自动投注Tab 窗口
-            var autoBetsElement = TreeWalker.ControlViewWalker.GetNextSibling(autoBetsSiblingElement);
-            if (autoBetsElement == null) return;
+            //包含 表格 最大盈利 值的父窗口
+            var winAutoSiblingElement = ControlViewFinder.GetFirstChild(autoBetsElement, 6);
+            if (winAutoSiblingElement == null)
+            {
+                this.updateMessage("未查找到包含表格及最大盈利数据的父窗口");
+                return;
+            }
 
-            //真实盈亏记录 兄弟窗口
-            var winAutoSiblingElement = ControlViewFinder.GetFirstChild(autoBetsElement, 7);
-            if (winAutoSiblingElement == null) return;
+            //包含 模拟盈亏记录 父窗口
+            var winAutoElement = TreeWalker.ControlViewWalker.GetLastChild(winAutoSiblingElement);
+            if (winAutoElement == null)
+            {
+                this.updateMessage("未查找到包含最大盈利数据的父窗口");
+                return;
+            }
 
-            //真实盈亏记录 窗口
-            var winAutoElement = ControlViewFinder.GetNextSibling(winAutoSiblingElement, 3);
-            if (winAutoElement == null) return;
-
-            //真实盈亏记录窗口中 第一个元素
+            //模拟盈亏记录窗口中 第一个元素 兄弟控件
             var winAutoFirstElement = TreeWalker.ControlViewWalker.GetFirstChild(winAutoElement);
-            if (winAutoFirstElement == null) return;
+            if (winAutoFirstElement == null)
+            {
+                this.updateMessage("未查找到真实盈亏字段的兄弟控件");
+                return;
+            }
 
-            //真实盈亏字段控件
+            //模拟盈亏字段控件
             var winAutoControl = ControlViewFinder.GetNextSibling(winAutoFirstElement, 15);
-            if (winAutoControl == null) return;
+            if (winAutoControl == null)
+            {
+                this.updateMessage("未查找到包含真实盈亏字段的控件");
+                return;
+            }
+
+            this.updateMessage(string.Format("当前真实盈亏：{0}", winAutoControl.Current.Name));
         }
 
         /// <summary>
@@ -81,7 +99,7 @@ namespace BetsPlanUIAutomation
         /// <param name="message">消息的内容</param>
         private void updateMessageControlText(string message)
         {
-            this.txt_message.AppendText(message+"\r\n");
+            this.txt_message.AppendText(message + "\r\n");
         }
     }
 }
