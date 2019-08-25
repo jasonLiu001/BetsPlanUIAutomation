@@ -1,11 +1,5 @@
 ﻿using BetsPlanUIAutomation.ControlFinder;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Automation;
 using System.Windows.Forms;
 
@@ -20,7 +14,7 @@ namespace BetsPlanUIAutomation
 
         private void Btn_Start_Click(object sender, EventArgs e)
         {
-            this.UpdateMessage(string.Format("监控已启动..."));
+            this.UpdateMessage("监控已启动...");
             //查找挂机软件窗口对象
             var rootElement = ControlViewFinder.GetAutomationElementByProcessName("星图官方挂机软件");
             if (rootElement == null)
@@ -77,7 +71,7 @@ namespace BetsPlanUIAutomation
                 return;
             }
 
-            this.UpdateMessage(string.Format("当前真实盈亏：{0}", winAutoControl.Current.Name));
+            this.UpdateMessage($"当前真实盈亏：{winAutoControl.Current.Name}");
         }
 
         /// <summary>
