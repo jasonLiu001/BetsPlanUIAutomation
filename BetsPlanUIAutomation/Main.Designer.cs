@@ -28,46 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_start = new System.Windows.Forms.Button();
-            this.btn_stop = new System.Windows.Forms.Button();
-            this.txt_message = new System.Windows.Forms.TextBox();
+            this.Btn_Start = new System.Windows.Forms.Button();
+            this.Btn_Stop = new System.Windows.Forms.Button();
+            this.Txt_Message = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // btn_start
+            // Btn_Start
             // 
-            this.btn_start.Location = new System.Drawing.Point(29, 41);
-            this.btn_start.Name = "btn_start";
-            this.btn_start.Size = new System.Drawing.Size(182, 61);
-            this.btn_start.TabIndex = 0;
-            this.btn_start.Text = "启动";
-            this.btn_start.UseVisualStyleBackColor = true;
-            this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
+            this.Btn_Start.Location = new System.Drawing.Point(29, 41);
+            this.Btn_Start.Name = "Btn_Start";
+            this.Btn_Start.Size = new System.Drawing.Size(182, 61);
+            this.Btn_Start.TabIndex = 0;
+            this.Btn_Start.Text = "启动";
+            this.Btn_Start.UseVisualStyleBackColor = true;
+            this.Btn_Start.Click += new System.EventHandler(this.Btn_Start_Click);
             // 
-            // btn_stop
+            // Btn_Stop
             // 
-            this.btn_stop.Location = new System.Drawing.Point(394, 41);
-            this.btn_stop.Name = "btn_stop";
-            this.btn_stop.Size = new System.Drawing.Size(182, 61);
-            this.btn_stop.TabIndex = 0;
-            this.btn_stop.Text = "停止";
-            this.btn_stop.UseVisualStyleBackColor = true;
+            this.Btn_Stop.Location = new System.Drawing.Point(394, 41);
+            this.Btn_Stop.Name = "Btn_Stop";
+            this.Btn_Stop.Size = new System.Drawing.Size(182, 61);
+            this.Btn_Stop.TabIndex = 0;
+            this.Btn_Stop.Text = "停止";
+            this.Btn_Stop.UseVisualStyleBackColor = true;
+            this.Btn_Stop.Click += new System.EventHandler(this.Btn_Stop_Click);
             // 
-            // txt_message
+            // Txt_Message
             // 
-            this.txt_message.Location = new System.Drawing.Point(29, 121);
-            this.txt_message.Multiline = true;
-            this.txt_message.Name = "txt_message";
-            this.txt_message.Size = new System.Drawing.Size(547, 224);
-            this.txt_message.TabIndex = 1;
+            this.Txt_Message.Location = new System.Drawing.Point(29, 121);
+            this.Txt_Message.Multiline = true;
+            this.Txt_Message.Name = "Txt_Message";
+            this.Txt_Message.Size = new System.Drawing.Size(547, 224);
+            this.Txt_Message.TabIndex = 1;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(615, 395);
-            this.Controls.Add(this.txt_message);
-            this.Controls.Add(this.btn_stop);
-            this.Controls.Add(this.btn_start);
+            this.Controls.Add(this.Txt_Message);
+            this.Controls.Add(this.Btn_Stop);
+            this.Controls.Add(this.Btn_Start);
             this.MaximizeBox = false;
             this.Name = "Main";
             this.Text = "BetsPlanAutomation";
@@ -78,9 +79,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btn_start;
-        private System.Windows.Forms.Button btn_stop;
-        private System.Windows.Forms.TextBox txt_message;
+        private System.Windows.Forms.Button Btn_Start;
+        private System.Windows.Forms.Button Btn_Stop;
+        private System.Windows.Forms.TextBox Txt_Message;
     }
 }
 

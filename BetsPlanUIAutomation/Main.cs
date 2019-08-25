@@ -18,14 +18,14 @@ namespace BetsPlanUIAutomation
             InitializeComponent();
         }
 
-        private void btn_start_Click(object sender, EventArgs e)
+        private void Btn_Start_Click(object sender, EventArgs e)
         {
-            this.updateMessage(string.Format("监控已启动..."));
+            this.UpdateMessage(string.Format("监控已启动..."));
             //查找挂机软件窗口对象
             var rootElement = ControlViewFinder.GetAutomationElementByProcessName("星图官方挂机软件");
             if (rootElement == null)
             {
-                this.updateMessage("未查找到星图官方挂机软件窗口");
+                this.UpdateMessage("未查找到星图官方挂机软件窗口");
                 return;
             }
 
@@ -33,7 +33,7 @@ namespace BetsPlanUIAutomation
             var autoBetsFirstElement = ControlViewFinder.GetFirstChild(rootElement, 2);
             if (autoBetsFirstElement == null)
             {
-                this.updateMessage("未查找到包含自动投注Tab选项卡所在的父窗口");
+                this.UpdateMessage("未查找到包含自动投注Tab选项卡所在的父窗口");
                 return;
             }
 
@@ -41,7 +41,7 @@ namespace BetsPlanUIAutomation
             var autoBetsElement = TreeWalker.ControlViewWalker.GetLastChild(autoBetsFirstElement);
             if (autoBetsElement == null)
             {
-                this.updateMessage("未查找到包含所有Tab选项卡的父窗口");
+                this.UpdateMessage("未查找到包含所有Tab选项卡的父窗口");
                 return;
             }
 
@@ -49,7 +49,7 @@ namespace BetsPlanUIAutomation
             var winAutoSiblingElement = ControlViewFinder.GetFirstChild(autoBetsElement, 6);
             if (winAutoSiblingElement == null)
             {
-                this.updateMessage("未查找到包含表格及最大盈利数据的父窗口");
+                this.UpdateMessage("未查找到包含表格及最大盈利数据的父窗口");
                 return;
             }
 
@@ -57,7 +57,7 @@ namespace BetsPlanUIAutomation
             var winAutoElement = TreeWalker.ControlViewWalker.GetLastChild(winAutoSiblingElement);
             if (winAutoElement == null)
             {
-                this.updateMessage("未查找到包含最大盈利数据的父窗口");
+                this.UpdateMessage("未查找到包含最大盈利数据的父窗口");
                 return;
             }
 
@@ -65,7 +65,7 @@ namespace BetsPlanUIAutomation
             var winAutoFirstElement = TreeWalker.ControlViewWalker.GetFirstChild(winAutoElement);
             if (winAutoFirstElement == null)
             {
-                this.updateMessage("未查找到真实盈亏字段的兄弟控件");
+                this.UpdateMessage("未查找到真实盈亏字段的兄弟控件");
                 return;
             }
 
@@ -73,33 +73,38 @@ namespace BetsPlanUIAutomation
             var winAutoControl = ControlViewFinder.GetNextSibling(winAutoFirstElement, 15);
             if (winAutoControl == null)
             {
-                this.updateMessage("未查找到包含真实盈亏字段的控件");
+                this.UpdateMessage("未查找到包含真实盈亏字段的控件");
                 return;
             }
 
-            this.updateMessage(string.Format("当前真实盈亏：{0}", winAutoControl.Current.Name));
+            this.UpdateMessage(string.Format("当前真实盈亏：{0}", winAutoControl.Current.Name));
         }
 
         /// <summary>
         /// 定义更新文本委托类型
         /// </summary>
         /// <param name="message">更新消息内容</param>
-        public delegate void updateTextDelegate(string message);
+        public delegate void UpdateTextDelegate(string message);
         /// <summary>
         /// 更新消息文本
         /// </summary>
         /// <param name="message">消息文本</param>
-        private void updateMessage(string message)
+        private void UpdateMessage(string message)
         {
-            this.Invoke(new updateTextDelegate(updateMessageControlText), message);
+            this.Invoke(new UpdateTextDelegate(UpdateMessageControlText), message);
         }
         /// <summary>
         /// 更新消息控件的文本
         /// </summary>
         /// <param name="message">消息的内容</param>
-        private void updateMessageControlText(string message)
+        private void UpdateMessageControlText(string message)
         {
-            this.txt_message.AppendText(message + "\r\n");
+            this.Txt_Message.AppendText(message + "\r\n");
+        }
+
+        private void Btn_Stop_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
