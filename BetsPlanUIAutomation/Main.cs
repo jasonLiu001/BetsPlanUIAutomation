@@ -29,6 +29,11 @@ namespace BetsPlanUIAutomation
             this.UpdateMessage($"当前真实盈亏：{mockWinMoneyValue}");
         }
 
+        /// <summary>
+        /// 获取模拟盈利余额
+        /// </summary>
+        /// <param name="parent">包含模拟盈亏的父窗口</param>
+        /// <returns></returns>
         private string GetMockWinMoneyValue(AutomationElement parent)
         {
             //模拟盈亏字段控件
