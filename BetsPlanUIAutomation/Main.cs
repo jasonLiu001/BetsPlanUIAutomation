@@ -23,15 +23,23 @@ namespace BetsPlanUIAutomation
                 return;
             }
 
+            //模拟盈亏金额
+            var mockWinMoneyValue = this.GetMockWinMoneyValue(winAutoFirstElement);
+
+            this.UpdateMessage($"当前真实盈亏：{mockWinMoneyValue}");
+        }
+
+        private string GetMockWinMoneyValue(AutomationElement parent)
+        {
             //模拟盈亏字段控件
-            var winAutoControl = ControlViewFinder.GetNextSibling(winAutoFirstElement, 15);
+            var winAutoControl = ControlViewFinder.GetNextSibling(parent, 15);
             if (winAutoControl == null)
             {
                 this.UpdateMessage("未查找到包含真实盈亏字段的控件");
-                return;
+                return string.Empty;
             }
 
-            this.UpdateMessage($"当前真实盈亏：{winAutoControl.Current.Name}");
+            return winAutoControl.Current.Name;
         }
 
         /// <summary>
